@@ -568,7 +568,7 @@ const projects = [
     name:'"Vitals" — OffSec UGC Lab Machine',
     org:'OffSec Proving Grounds Candidate · 2026',
     desc:'Vulnerable healthcare VM with multi-stage attack chain: CVE-2025-1094 JWT extraction, PostgreSQL privilege escalation to root.',
-    img:null, imgAlt:'Attack chain diagram', imgIcon:'🎯',
+    img:"https://media.licdn.com/dms/image/v2/C4E0BAQHaN2i1_8U4rw/company-logo_200_200/company-logo_200_200/0/1677689983147/offensive_security_logo?e=2147483647&v=beta&t=htQqx_IrvJnvVxc5hZrlqwqmt35tlUpQJ-eyravaY4k", imgAlt:'Attack chain diagram', imgIcon:'🎯',
     stack:['Ubuntu Server','Flask','PostgreSQL','JWT','systemd','CVE-2025-1094'],
     bullets:['Multi-stage attack: CVE-2025-1094 UTF-8 bypass on Flask/PostgreSQL API → JWT secret extraction → admin privilege escalation','Privilege escalation via insecure PostgreSQL archive_command and misconfigured systemd service → root compromise','Realistic enumeration: Swagger API discovery, JWT abuse scenarios, database lateral movement, embedded attack hints'],
     gh:'https://github.com/mohamed159753/vitals-offsec-lab'
