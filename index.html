@@ -61,23 +61,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:400;height:56px;display:flex;ali
 .hero-img-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--accent2),var(--accent3));clip-path:polygon(12% 0%,100% 0%,100% 88%,88% 100%,0% 100%,0% 12%);opacity:.2}
 .hero-img-inner{position:absolute;inset:3px;background:var(--bg2);clip-path:polygon(12% 0%,100% 0%,100% 88%,88% 100%,0% 100%,0% 12%);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .hero-avatar-big{width:100%;height:100%;background:linear-gradient(160deg,var(--bg3) 0%,var(--bg4) 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem}
-.av-ring{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));padding:3px;flex-shrink:0}
-.av-ring-inner {
-  width: 100%;
-  height: 100%;
+.av-ring {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  overflow: hidden;   /* IMPORTANT */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
 }
 
-/* the image itself */
+.av-ring-inner {
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
 .av-ring-inner img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* keeps proportions, fills circle */
-  display: block;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(1.05);
 }
 .av-name{font-family:var(--font-head);font-size:1rem;font-weight:600;color:var(--text);letter-spacing:1px}
 .av-sub{font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:3px}
