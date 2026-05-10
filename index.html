@@ -1,1 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Mohamed Mensi — Network Security Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07090f;--bg2:#0e1220;--bg3:#131825;--bg4:#1a2235;
+  --accent:#00d4ff;--accent2:#7c3aed;--accent3:#06b6d4;
+  --green:#10b981;--pink:#f472b6;
+  --text:#e2e8f0;--muted:#64748b;--border:#1e2d45;
+  --font-mono:'Share Tech Mono',monospace;
+  --font-head:'Rajdhani',sans-serif;
+  --font-body:'Inter',sans-serif;
+}
+.light{
+  --bg:#f8fafc;--bg2:#ffffff;--bg3:#f1f5f9;--bg4:#e2e8f0;
+  --text:#0f172a;--muted:#64748b;--border:#cbd5e1;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;transition:background .3s,color .3s}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,212,255,.008) 3px,rgba(0,212,255,.008) 4px);pointer-events:none;z-index:998}
+.light::before{display:none}
 
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:400;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(7,9,15,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);transition:background .3s}
+.light nav{background:rgba(248,250,252,.96)}
+.logo{font-family:var(--font-mono);font-size:15px;color:var(--accent);letter-spacing:2px}
+.logo em{color:var(--muted);font-style:normal}
+.nav-r{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-family:var(--font-mono);font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.tbtn{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--font-mono);font-size:11px;padding:5px 12px;cursor:pointer;transition:all .2s;letter-spacing:1px}
+.tbtn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;padding:100px 3rem 3rem;max-width:1100px;margin:0 auto;position:relative}
+@media(max-width:700px){#hero{grid-template-columns:1fr;padding:100px 1.5rem 3rem}}
+.hero-bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse 60% 50% at 70% 50%,rgba(124,58,237,.12) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(0,212,255,.07) 0%,transparent 60%)}
+.light .hero-bg{background:radial-gradient(ellipse 60% 50% at 70% 50%,rgba(124,58,237,.05) 0%,transparent 70%)}
+.hero-greet{font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:3px;margin-bottom:1rem;opacity:0;animation:up .7s .1s forwards}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-name{font-family:var(--font-head);font-size:clamp(2.2rem,6vw,4rem);font-weight:700;line-height:1.05;color:#fff;margin-bottom:.25rem;opacity:0;animation:up .7s .25s forwards}
+.light .hero-name{color:#0f172a}
+.hero-name .hi{color:var(--text);font-weight:300}
+.hero-role{font-family:var(--font-mono);font-size:clamp(13px,2vw,16px);color:var(--muted);margin-bottom:1.75rem;min-height:1.4em;opacity:0;animation:up .7s .4s forwards}
+.cur{display:inline-block;width:2px;height:.9em;background:var(--accent);vertical-align:middle;animation:bc .7s step-end infinite}
+@keyframes bc{0%,100%{opacity:1}50%{opacity:0}}
+.hero-desc{font-size:14px;line-height:1.8;color:var(--muted);max-width:480px;margin-bottom:2rem;opacity:0;animation:up .7s .55s forwards}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:up .7s .7s forwards}
+.btn{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:11px 28px;text-decoration:none;transition:all .25s;cursor:pointer;border:none;display:inline-block}
+.btn-a{background:linear-gradient(135deg,var(--accent2),var(--accent3));color:#fff}
+.btn-a:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,58,237,.4)}
+.btn-b{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn-b:hover{background:rgba(0,212,255,.08)}
+.hero-social{display:flex;gap:1rem;margin-top:2rem;opacity:0;animation:up .7s .85s forwards}
+.social-link{width:38px;height:38px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-family:var(--font-mono);font-size:11px;transition:all .2s}
+.social-link:hover{border-color:var(--accent);color:var(--accent)}
+.hero-img-wrap{display:flex;justify-content:center;align-items:center;opacity:0;animation:up .7s .3s forwards}
+@media(max-width:700px){.hero-img-wrap{display:none}}
+.hero-img-frame{position:relative;width:320px;height:380px}
+.hero-img-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--accent2),var(--accent3));clip-path:polygon(12% 0%,100% 0%,100% 88%,88% 100%,0% 100%,0% 12%);opacity:.2}
+.hero-img-inner{position:absolute;inset:3px;background:var(--bg2);clip-path:polygon(12% 0%,100% 0%,100% 88%,88% 100%,0% 100%,0% 12%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-avatar-big{width:100%;height:100%;background:linear-gradient(160deg,var(--bg3) 0%,var(--bg4) 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem}
+.av-ring{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));padding:3px;flex-shrink:0}
+.av-ring-inner{width:100%;height:100%;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:2.8rem;font-weight:700;color:var(--accent)}
+.av-name{font-family:var(--font-head);font-size:1rem;font-weight:600;color:var(--text);letter-spacing:1px}
+.av-sub{font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:3px}
+.av-dots{display:flex;gap:6px;margin-top:.5rem}
+.av-dot{width:6px;height:6px;border-radius:50%;animation:blink 1.5s infinite}
+.av-dot:nth-child(1){background:var(--green);animation-delay:0s}
+.av-dot:nth-child(2){background:var(--accent);animation-delay:.3s}
+.av-dot:nth-child(3){background:var(--pink);animation-delay:.6s}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-badge{position:absolute;top:-12px;right:-12px;background:linear-gradient(135deg,var(--accent2),var(--accent3));padding:10px 18px;font-family:var(--font-mono);font-size:11px;color:#fff;letter-spacing:1px}
+.hero-stats{display:flex;gap:1.5rem;margin-top:2.5rem;opacity:0;animation:up .7s 1s forwards}
+.hstat{text-align:center}
+.hstat-n{font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:var(--accent)}
+.hstat-l{font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:1px}
+
+/* SECTIONS */
+.section-wrap{max-width:1100px;margin:0 auto;padding:5rem 3rem}
+@media(max-width:700px){.section-wrap{padding:4rem 1.5rem}}
+.sec-label{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:4px;text-transform:uppercase;margin-bottom:.5rem}
+.sec-title{font-family:var(--font-head);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;color:#fff;margin-bottom:.5rem;transition:color .3s}
+.light .sec-title{color:#0f172a}
+.sec-title::after{content:'';display:block;width:48px;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));margin-top:10px;margin-bottom:2.5rem}
+/* sub-heading inside sections — no underline bar */
+.sec-subtitle{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:#fff;margin-top:3rem;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);transition:color .3s}
+.light .sec-subtitle{color:#0f172a}
+.sec-sub{font-size:14px;color:var(--muted);max-width:600px;margin-bottom:2.5rem;line-height:1.7}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.svc-card{background:var(--bg2);border:1px solid var(--border);padding:1.75rem;transition:all .25s}
+.svc-card:hover{border-color:var(--accent2);transform:translateY(-3px)}
+.svc-icon{width:44px;height:44px;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(0,212,255,.15));display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:20px}
+.svc-name{font-family:var(--font-head);font-size:1rem;font-weight:600;color:#fff;margin-bottom:.5rem;transition:color .3s}
+.light .svc-name{color:#0f172a}
+.svc-desc{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:1rem}
+.svc-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:11px;color:var(--accent);text-decoration:none;transition:color .2s;margin-top:.25rem}
+.svc-link:hover{color:var(--accent2)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start}
+@media(max-width:700px){.about-grid,.contact-grid{grid-template-columns:1fr}}
+.about-frame{background:var(--bg2);border:1px solid var(--border);padding:2rem;text-align:center}
+.about-av{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:2rem;font-weight:700;color:#fff;margin:0 auto 1rem}
+.about-name-big{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:#fff;transition:color .3s}
+.light .about-name-big{color:#0f172a}
+.about-role-tag{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:2px;margin:.25rem 0 1.5rem}
+.about-info-row{display:flex;gap:.5rem;align-items:center;font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-bottom:.5rem;justify-content:center}
+.about-info-row a{color:var(--accent);text-decoration:none}
+.about-text{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:1.5rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.tag{font-family:var(--font-mono);font-size:11px;padding:4px 12px;background:rgba(124,58,237,.12);color:var(--accent2);border:1px solid rgba(124,58,237,.3);letter-spacing:.5px}
+.tl-item{display:grid;grid-template-columns:auto 1fr;gap:1rem;margin-bottom:1.5rem}
+.tl-dot-col{display:flex;flex-direction:column;align-items:center;padding-top:4px}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+.tl-line{width:1px;flex:1;background:var(--border);margin-top:6px}
+.tl-date{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:.2rem}
+.tl-title{font-family:var(--font-head);font-size:.95rem;font-weight:600;color:#fff;transition:color .3s}
+.light .tl-title{color:#0f172a}
+.tl-sub{font-size:13px;color:var(--muted)}
+
+/* SKILLS */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:700px){.skills-layout{grid-template-columns:1fr}}
+.skill-group{background:var(--bg2);border:1px solid var(--border);padding:1.5rem}
+.sg-title{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:3px;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+.skill-item{margin-bottom:1rem}
+.skill-top{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:12px;color:var(--text);margin-bottom:5px}
+.skill-top span{color:var(--muted)}
+.bar{height:3px;background:var(--border);overflow:hidden}
+.bar-inner{height:100%;width:0;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+.bi-a{background:linear-gradient(90deg,var(--accent2),var(--accent))}
+.bi-b{background:linear-gradient(90deg,var(--green),var(--accent3))}
+.bi-c{background:linear-gradient(90deg,var(--pink),var(--accent2))}
+.certs-row{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.5rem}
+.cert-badge{font-family:var(--font-mono);font-size:11px;padding:6px 16px;border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;gap:.5rem;transition:all .2s}
+.cert-badge:hover{border-color:var(--accent);color:var(--accent)}
+.cert-badge span{color:var(--accent)}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.proj-card{background:var(--bg2);border:1px solid var(--border);padding:1.75rem;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.proj-card:hover{transform:translateY(-4px)}
+.proj-card:hover::before{transform:scaleX(1)}
+.proj-tags{display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.ptag{font-family:var(--font-mono);font-size:10px;padding:3px 10px;letter-spacing:1px;border:1px solid}
+.ptag-n{color:var(--accent3);border-color:var(--accent3)}.ptag-s{color:var(--pink);border-color:var(--pink)}.ptag-t{color:var(--accent2);border-color:var(--accent2)}.ptag-c{color:var(--accent);border-color:var(--accent)}
+.proj-name{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.5rem;transition:color .3s}
+.light .proj-name{color:#0f172a}
+.proj-desc{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:1.25rem}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.4rem}
+.sp{font-family:var(--font-mono);font-size:10px;background:rgba(0,212,255,.07);color:var(--accent3);padding:2px 8px}
+.proj-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:11px;color:var(--accent);text-decoration:none;margin-top:1rem;transition:color .2s}
+.proj-link:hover{color:var(--accent2)}
+
+/* MODAL */
+.mo{display:none;position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:1.5rem}
+.mo.open{display:flex}
+.mb{background:var(--bg2);border:1px solid var(--border);max-width:650px;width:100%;padding:2.5rem;position:relative;max-height:85vh;overflow-y:auto;animation:mi .2s ease}
+@keyframes mi{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.mb-close{position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;transition:color .2s;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono)}
+.mb-close:hover{color:var(--pink)}
+.mb-tag{font-family:var(--font-mono);font-size:10px;padding:3px 10px;letter-spacing:1px;border:1px solid;display:inline-block;margin-bottom:1rem}
+.mb-title{font-family:var(--font-head);font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.25rem;transition:color .3s}
+.light .mb-title{color:#0f172a}
+.mb-org{font-family:var(--font-mono);font-size:12px;color:var(--accent);letter-spacing:1px;margin-bottom:1.5rem}
+.mb-body{font-size:14px;line-height:1.85;color:var(--muted);margin-bottom:1.5rem}
+.mb-bullets{margin-bottom:1.5rem}
+.mb-bullet{display:flex;gap:.75rem;font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:.6rem}
+.mb-bullet::before{content:'▸';color:var(--accent);flex-shrink:0;margin-top:1px}
+.mb-stack{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.mb-gh{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:12px;color:var(--accent);text-decoration:none;border:1px solid var(--accent);padding:8px 20px;transition:all .2s}
+.mb-gh:hover{background:rgba(0,212,255,.08)}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:1.5rem}
+.exp-card{background:var(--bg2);border:1px solid var(--border);padding:1.75rem;transition:border-color .2s}
+.exp-card:hover{border-color:var(--accent2)}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:.25rem}
+.exp-role{font-family:var(--font-head);font-size:1.05rem;font-weight:700;color:#fff;transition:color .3s}
+.light .exp-role{color:#0f172a}
+.exp-date{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:1px;white-space:nowrap}
+.exp-org{font-family:var(--font-mono);font-size:12px;color:var(--accent2);letter-spacing:.5px;margin-bottom:1rem}
+.exp-bullets{display:flex;flex-direction:column;gap:.4rem}
+.exp-bullet{display:flex;gap:.75rem;font-size:13px;color:var(--muted);line-height:1.6}
+.exp-bullet::before{content:'–';color:var(--accent);flex-shrink:0}
+
+/* BLOG */
+.blog-list{display:flex;flex-direction:column;gap:1rem}
+.blog-card{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:1.5rem;background:var(--bg2);border:1px solid var(--border);padding:1.25rem 1.5rem;transition:all .2s}
+@media(max-width:500px){.blog-card{grid-template-columns:1fr;gap:.75rem}}
+.blog-card:hover{border-color:var(--accent2);transform:translateX(4px)}
+.blog-dt{font-family:var(--font-mono);font-size:11px;color:var(--muted);line-height:1.4}
+.blog-t{font-family:var(--font-head);font-size:15px;font-weight:600;color:#fff;transition:color .3s}
+.light .blog-t{color:#0f172a}
+.blog-cat{font-family:var(--font-mono);font-size:10px;padding:3px 10px;letter-spacing:1px;border:1px solid;white-space:nowrap}
+.bc-n{color:var(--accent3);border-color:var(--accent3)}.bc-s{color:var(--pink);border-color:var(--pink)}.bc-c{color:var(--accent);border-color:var(--accent)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start}
+.contact-intro{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:2rem}
+.contact-items{display:flex;flex-direction:column;gap:.75rem}
+.ci{display:flex;align-items:center;gap:1rem;font-family:var(--font-mono);font-size:13px;color:var(--text);text-decoration:none;padding:.85rem 1.25rem;border:1px solid var(--border);background:var(--bg2);transition:all .2s}
+.ci:hover{border-color:var(--accent);color:var(--accent)}
+.ci-icon{color:var(--accent2);font-size:16px;min-width:20px;text-align:center}
+.cform{background:var(--bg2);border:1px solid var(--border);padding:2rem}
+.cform-head{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:3px;margin-bottom:1.5rem}
+.fg{margin-bottom:1.1rem}
+.fl{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:1px;display:block;margin-bottom:.4rem}
+.fi{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:13px;padding:10px 14px;outline:none;transition:border-color .2s}
+.fi:focus{border-color:var(--accent)}
+textarea.fi{resize:vertical;min-height:100px}
+.fstatus{font-family:var(--font-mono);font-size:12px;padding:.4rem 0;display:none;letter-spacing:1px}
+.fstatus.ok{color:var(--green);display:block}.fstatus.err{color:var(--pink);display:block}.fstatus.ing{color:var(--accent3);display:block}
+
+footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:1px}
+.ft a{color:var(--accent);text-decoration:none}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s}
+.reveal.v{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="hero-bg"></div>
+
+<nav>
+  <div class="logo">M.<em>MENSI</em></div>
+  <div class="nav-r">
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#leadership">leadership</a>
+      <a href="#contact">contact</a>
+    </div>
+    <button class="tbtn" id="tbtn">☀ LIGHT</button>
+  </div>
+</nav>
+
+<!-- MODAL -->
+<div class="mo" id="mo">
+  <div class="mb">
+    <button class="mb-close" id="mclose">✕</button>
+    <span class="mb-tag" id="mtag"></span>
+    <div class="mb-title" id="mtitle"></div>
+    <div class="mb-org" id="morg"></div>
+    <div class="mb-body" id="mbody"></div>
+    <div class="mb-bullets" id="mbullets"></div>
+    <div class="mb-stack" id="mstack"></div>
+    <a class="mb-gh" id="mgh" href="#" target="_blank">⌥ View on GitHub</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-text">
+    <div class="hero-greet">// HELLO, WORLD</div>
+    <h1 class="hero-name"><span class="hi">I am </span><br>Mohamed<br>Mensi</h1>
+    <p class="hero-role" id="ht"><span class="cur"></span></p>
+    <p class="hero-desc">Junior network security & cybersecurity engineer based in Tunis. Building secure infrastructures, breaking vulnerable ones, and teaching others how both work.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-a">View My Work</a>
+      <a href="#contact" class="btn btn-b">Contact Me</a>
+    </div>
+    <div class="hero-social">
+      <a href="https://linkedin.com/in/mohamed-mensi/" target="_blank" class="social-link">in</a>
+      <a href="https://github.com/mohamed-mensi" target="_blank" class="social-link">&lt;/&gt;</a>
+      <a href="mailto:mohamed.mensi24@gmail.com" class="social-link">✉</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">6+</div><div class="hstat-l">Projects</div></div>
+      <div class="hstat"><div class="hstat-n">20+</div><div class="hstat-l">Workshops</div></div>
+      <div class="hstat"><div class="hstat-n">50+</div><div class="hstat-l">Students</div></div>
+      <div class="hstat"><div class="hstat-n">EU</div><div class="hstat-l">Remote-Ready</div></div>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <div class="hero-img-frame">
+      <div class="hero-img-bg"></div>
+      <div class="hero-img-inner">
+        <div class="hero-avatar-big">
+          <div class="av-ring"><div class="av-ring-inner">MM</div></div>
+          <div class="av-name">Mohamed Mensi</div>
+          <div class="av-sub">NET · SEC · CTF</div>
+          <div class="av-dots">
+            <div class="av-dot"></div>
+            <div class="av-dot"></div>
+            <div class="av-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-badge">OPEN TO WORK</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT I DO -->
+<div class="section-wrap" id="services">
+  <div class="sec-label reveal">// WHAT I DO</div>
+  <h2 class="sec-title reveal">Services & Expertise</h2>
+  <div class="services-grid reveal">
+    <div class="svc-card"><div class="svc-icon">🛡</div><div class="svc-name">Network Security Engineering</div><div class="svc-desc">Design and validate enterprise network infrastructures — VPN-MPLS backbones, BGP/OSPF routing, HSRP redundancy, and EtherChannel using Cisco IOS/GNS3.</div></div>
+    <div class="svc-card"><div class="svc-icon">🔍</div><div class="svc-name">Penetration Testing</div><div class="svc-desc">Web application and network security assessments using OWASP Top 10, Burp Suite, Nmap, and CVE exploitation in supervised environments.</div></div>
+    <div class="svc-card"><div class="svc-icon">☁</div><div class="svc-name">Cloud Infrastructure</div><div class="svc-desc">Multi-tenant cloud resource management using OpenStack, Huawei ManageOne, REST APIs, RBAC, and tenant isolation on academic/enterprise clouds.</div></div>
+    <div class="svc-card"><div class="svc-icon">🤖</div><div class="svc-name">Security Automation & ML</div><div class="svc-desc">SOC alert prioritization platforms, ML-based attack classification (Random Forest, CIC-IDS2017), FastAPI inference services, and Spring Boot orchestration.</div></div>
+    <div class="svc-card"><div class="svc-icon">🏆</div><div class="svc-name">CTF & Security Research</div><div class="svc-desc">Competitive CTF participation across forensics, web, and network categories. OffSec UGC lab machine development for Proving Grounds.</div></div>
+    <div class="svc-card"><div class="svc-icon">🎓</div><div class="svc-name">Security Education</div><div class="svc-desc">20+ workshops delivered to 50+ students as GDSC Cybersecurity Lead — covering OWASP attacks, Wireshark analysis, and Nmap reconnaissance.</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <div class="sec-label reveal">// 01 · ABOUT</div>
+  <h2 class="sec-title reveal">Who I Am</h2>
+  <div class="about-grid reveal">
+    <div>
+      <div class="about-frame">
+        <div class="about-av">MM</div>
+        <div class="about-name-big">Mohamed Mensi</div>
+        <div class="about-role-tag">// NETWORK SECURITY ENGINEER</div>
+        <div class="about-info-row">✉ <a href="mailto:mohamed.mensi24@gmail.com">mohamed.mensi24@gmail.com</a></div>
+        <div class="about-info-row">📍 Tunis, Tunisia</div>
+        <div class="about-info-row">📞 +216 51 306 136</div>
+        <div class="about-info-row"><a href="https://linkedin.com/in/mohamed-mensi/" target="_blank">linkedin.com/in/mohamed-mensi</a></div>
+        <div class="about-info-row"><a href="https://github.com/mohamed-mensi" target="_blank">github.com/mohamed-mensi</a></div>
+      </div>
+    </div>
+    <div>
+      <p class="about-text">Junior cybersecurity and network security engineer (M1, ISGT) with hands-on experience in enterprise network infrastructure, penetration testing, and cloud security. Designed and validated a full VPN-MPLS backbone with OSPF/BGP, VRF-Lite, HSRP, and EtherChannel in GNS3.</p>
+      <p class="about-text">Identified and exploited CVE-2019-11358 in a supervised web application security assessment. Delivered 20+ security workshops to 50+ students as GDSC Cybersecurity Lead. Currently pursuing ISO 27001 knowledge in the MSSI program.</p>
+      <div class="tag-row">
+        <span class="tag">SOC Analyst</span>
+        <span class="tag">Network Security</span>
+        <span class="tag">Junior Pentesting</span>
+        <span class="tag">Remote-Ready</span>
+        <span class="tag">ISO 27001</span>
+      </div>
+      <div class="tl-item"><div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div><div><div class="tl-date">SEP 2025 – PRESENT</div><div class="tl-title">M1 — Information Systems Security</div><div class="tl-sub">ISGT — Institut Supérieur de Gestion de Tunis</div></div></div>
+      <div class="tl-item"><div class="tl-dot-col"><div class="tl-dot" style="background:var(--green)"></div><div class="tl-line"></div></div><div><div class="tl-date">2022 – 2025</div><div class="tl-title">Bachelor in Computer Science</div><div class="tl-sub">ISAMM — Institut Supérieur des Arts Multimédia de la Manouba</div></div></div>
+      <div class="tl-item"><div class="tl-dot-col"><div class="tl-dot" style="background:var(--pink)"></div></div><div><div class="tl-date">NOV 2022 – MAY 2024</div><div class="tl-title">Cybersecurity Lead — GDSC</div><div class="tl-sub">Google Developer Student Club, ISGT</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <div class="sec-label reveal">// 02 · SKILLS</div>
+  <h2 class="sec-title reveal">Technical Arsenal</h2>
+  <div class="skills-layout reveal">
+    <div class="skill-group">
+      <div class="sg-title">NETWORK SECURITY</div>
+      <div class="skill-item"><div class="skill-top">Cisco IOS / GNS3 <span>95%</span></div><div class="bar"><div class="bar-inner bi-a" data-w="95"></div></div></div>
+      <div class="skill-item"><div class="skill-top">OSPF / BGP / MPLS <span>90%</span></div><div class="bar"><div class="bar-inner bi-a" data-w="90"></div></div></div>
+      <div class="skill-item"><div class="skill-top">VRF / VPN / EtherChannel <span>85%</span></div><div class="bar"><div class="bar-inner bi-a" data-w="85"></div></div></div>
+      <div class="skill-item"><div class="skill-top">HSRP / STP / VLAN <span>85%</span></div><div class="bar"><div class="bar-inner bi-a" data-w="85"></div></div></div>
+      <div class="skill-item"><div class="skill-top">Wireshark / Packet Tracer <span>80%</span></div><div class="bar"><div class="bar-inner bi-a" data-w="80"></div></div></div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-title">OFFENSIVE SECURITY</div>
+      <div class="skill-item"><div class="skill-top">Penetration Testing <span>75%</span></div><div class="bar"><div class="bar-inner bi-b" data-w="75"></div></div></div>
+      <div class="skill-item"><div class="skill-top">Burp Suite / Nmap <span>80%</span></div><div class="bar"><div class="bar-inner bi-b" data-w="80"></div></div></div>
+      <div class="skill-item"><div class="skill-top">OWASP Top 10 / CVE Exploitation <span>75%</span></div><div class="bar"><div class="bar-inner bi-b" data-w="75"></div></div></div>
+      <div class="skill-item"><div class="skill-top">CTF (Forensics, Web, Network) <span>80%</span></div><div class="bar"><div class="bar-inner bi-b" data-w="80"></div></div></div>
+      <div class="skill-item"><div class="skill-top">Linux / Kali / Bash <span>85%</span></div><div class="bar"><div class="bar-inner bi-b" data-w="85"></div></div></div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-title">CLOUD & INFRA</div>
+      <div class="skill-item"><div class="skill-top">OpenStack / Huawei ManageOne <span>80%</span></div><div class="bar"><div class="bar-inner bi-c" data-w="80"></div></div></div>
+      <div class="skill-item"><div class="skill-top">Docker / VM Automation <span>70%</span></div><div class="bar"><div class="bar-inner bi-c" data-w="70"></div></div></div>
+      <div class="skill-item"><div class="skill-top">REST APIs / RBAC <span>80%</span></div><div class="bar"><div class="bar-inner bi-c" data-w="80"></div></div></div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-title">PROGRAMMING</div>
+      <div class="skill-item"><div class="skill-top">Python (scripting, automation) <span>80%</span></div><div class="bar"><div class="bar-inner bi-c" data-w="80"></div></div></div>
+      <div class="skill-item"><div class="skill-top">Java / Spring Boot <span>75%</span></div><div class="bar"><div class="bar-inner bi-c" data-w="75"></div></div></div>
+      <div class="skill-item"><div class="skill-top">Flask / FastAPI <span>75%</span></div><div class="bar"><div class="bar-inner bi-c" data-w="75"></div></div></div>
+      <div class="skill-item"><div class="skill-top">Bash / Git <span>80%</span></div><div class="bar"><div class="bar-inner bi-c" data-w="80"></div></div></div>
+    </div>
+  </div>
+  <div class="certs-row reveal">
+    <div class="cert-badge"><span>✓</span> Cisco CCNA1</div>
+    <div class="cert-badge"><span>✓</span> Cisco Linux Essentials</div>
+    <div class="cert-badge"><span>✓</span> ISO 27001 (in progress)</div>
+    <div class="cert-badge"><span>✓</span> Securinets ISGT CTF</div>
+    <div class="cert-badge"><span>✓</span> GDSC Cybersecurity Lead</div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <div class="sec-label reveal">// 03 · PROJECTS</div>
+  <h2 class="sec-title reveal">Selected Work</h2>
+  <p class="sec-sub reveal">Click any card for the full technical breakdown.</p>
+  <div class="proj-grid reveal" id="pg"></div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <div class="sec-label reveal">// 04 · EXPERIENCE</div>
+  <h2 class="sec-title reveal">Professional Experience</h2>
+  <div class="exp-list reveal">
+    <div class="exp-card">
+      <div class="exp-top"><div class="exp-role">Cloud Resource & Billing System — PFE Internship</div><div class="exp-date">FEB – JUN 2025</div></div>
+      <div class="exp-org">CCK (El Khawarizmi Computing Center) · Huawei Partner Project · Supervised by Dr. Amine Kechiche & Mr. Badis Saadi</div>
+      <div class="exp-bullets">
+        <div class="exp-bullet">Designed and deployed a multi-tenant cloud resource management platform for academic institutions using OpenStack REST APIs and Huawei ManageOne</div>
+        <div class="exp-bullet">Implemented RBAC and tenant isolation policies in Spring Boot, enforcing least-privilege access across three isolated university tenants</div>
+        <div class="exp-bullet">Developed a Flask-based API orchestration layer as a secure abstraction over Huawei ManageOne, improving security boundaries and maintainability</div>
+        <div class="exp-bullet">Built hybrid billing system (fixed + pay-as-you-go), automated invoice generation, and real-time resource monitoring workflows</div>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-top"><div class="exp-role">IT Infrastructure Intern</div><div class="exp-date">AUG – SEP 2023</div></div>
+      <div class="exp-org">Astral · Ben Arous, Tunisia</div>
+      <div class="exp-bullets">
+        <div class="exp-bullet">Assessed and reconfigured internal switch topology and server connectivity, identifying network bottlenecks and documenting infrastructure layout</div>
+        <div class="exp-bullet">Migrated manual inventory to a digital tracking system, improving data integrity and auditability</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEADERSHIP -->
+<div class="section-wrap" id="leadership">
+  <div class="sec-label reveal">// 05 · LEADERSHIP</div>
+  <h2 class="sec-title reveal">Leadership & Community</h2>
+  <p class="sec-sub reveal">Technical leadership, mentoring, and cybersecurity education across university clubs and student communities.</p>
+
+  <div class="exp-list reveal">
+    <div class="exp-card">
+      <div class="exp-top"><div class="exp-role">Technical Lead — Securinets ISGT</div><div class="exp-date">NOV 2025 – PRESENT</div></div>
+      <div class="exp-org">University Cybersecurity Club · ISGT Tunis</div>
+      <div class="exp-bullets">
+        <div class="exp-bullet">Lead technical training on penetration testing, network security, and CTF methodologies (Wireshark, Burp Suite, Nmap)</div>
+        <div class="exp-bullet">Mentor junior members in vulnerability research, protocol analysis, and attack simulation strategies</div>
+        <div class="exp-bullet">Help design internal CTF challenges and lab environments for hands-on security learning</div>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-top"><div class="exp-role">Cybersecurity Lead — Google Developer Student Club</div><div class="exp-date">NOV 2022 – MAY 2024</div></div>
+      <div class="exp-org">GDSC · ISGT Tunis</div>
+      <div class="exp-bullets">
+        <div class="exp-bullet">Delivered 20+ cybersecurity workshops to 50+ students covering OWASP Top 10, network reconnaissance, and traffic analysis</div>
+        <div class="exp-bullet">Built cybersecurity curriculum from scratch, introducing structured offensive/defensive learning paths</div>
+        <div class="exp-bullet">Organized hands-on labs for Wireshark packet analysis, Nmap scanning, and web vulnerability exploitation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-subtitle reveal">Workshops & Training Sessions</div>
+  <div class="services-grid reveal">
+    <div class="svc-card">
+      <div class="svc-icon">🕵️</div>
+      <div class="svc-name">Introduction to Cybersecurity</div>
+      <div class="svc-desc">Interactive workshop covering threat types, attack vectors, basic defensive strategies, and real-world security principles through practical examples.</div>
+      <a class="svc-link" href="https://www.facebook.com/gdscisima/posts/pfbid0oSqTsd9se57AvVkG2TG4k5qH56DYVwc2ZymK7wiap3BxPkHseSdyQ8dVnXA5fRASl?rdid=cJWRELV8iR5sLF9T" target="_blank">↗ View Post</a>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🐧</div>
+      <div class="svc-name">Linux Fundamentals Workshop</div>
+      <div class="svc-desc">Core Linux concepts and command-line skills for cybersecurity — file management, permissions, process control, and system administration through hands-on exercises.</div>
+      <a class="svc-link" href="https://www.linkedin.com/posts/securinets-isgt_%F0%9D%90%BB%F0%9D%91%96%F0%9D%91%94%E2%84%8E%F0%9D%91%99%F0%9D%91%96%F0%9D%91%94%E2%84%8E%F0%9D%91%A1%F0%9D%91%A0-%F0%9D%91%93%F0%9D%91%9F%F0%9D%91%9C%F0%9D%91%9A-%F0%9D%91%9C%F0%9D%91%A2%F0%9D%91%9F-%F0%9D%91%93%F0%9D%91%96%F0%9D%91%9F-activity-7438973742719885312-UB63?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAACphQ-IBY1yT_EYTgyBOKFNwQMdGZyh3g4g" target="_blank">↗ View Post</a>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🔎</div>
+      <div class="svc-name">Introduction to CTFs & Guided CTF</div>
+      <div class="svc-desc">Hands-on CTF introduction covering web security, cryptography, forensics, reverse engineering, and OSINT. Participants engaged in a guided live CTF session.</div>
+      <a class="svc-link" href="https://www.linkedin.com/posts/mohamed-mensi_honored-to-lead-the-introduction-to-ctf-workshop-ugcPost-7422668515578642432-AMvz?utm_source=share&utm_medium=member_desktop&rcm=ACoAACphQ-IBY1yT_EYTgyBOKFNwQMdGZyh3g4g" target="_blank">↗ View Post</a>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🧠</div>
+      <div class="svc-name">CTF Forensics Author and Organizer</div>
+      <div class="svc-desc">Designed and authored Digital Forensics challenges for the SecurinetsISGT Capture The Flag (CTF) competition, creating realistic investigative scenarios focused on evidence analysis, file recovery, and forensic techniques.</div>
+      <a class="svc-link" href="https://www.linkedin.com/posts/mohamed-mensi_ctf-cybersecurity-digitalforensics-ugcPost-7458154945830223872-OwNl?utm_source=share&utm_medium=member_desktop&rcm=ACoAACphQ-IBY1yT_EYTgyBOKFNwQMdGZyh3g4g" target="_blank">↗ View Post</a>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG -->
+<div class="section-wrap" id="blog">
+  <div class="sec-label reveal">// 06 · BLOG</div>
+  <h2 class="sec-title reveal">Writing & Notes</h2>
+  <p class="sec-sub reveal">Technical write-ups, CTF solutions, and lab notes — coming soon.</p>
+  <div class="blog-list reveal">
+    <div class="blog-card"><div class="blog-dt">COMING<br>SOON</div><div class="blog-t">Building a VPN-MPLS Lab from Scratch in GNS3</div><div class="blog-cat bc-n">NETWORKING</div></div>
+    <div class="blog-card"><div class="blog-dt">COMING<br>SOON</div><div class="blog-t">Securinets CTF — Full Write-Up & Methodology</div><div class="blog-cat bc-s">CTF</div></div>
+    <div class="blog-card"><div class="blog-dt">COMING<br>SOON</div><div class="blog-t">CVE-2019-11358 jQuery Prototype Pollution — Practical Demo</div><div class="blog-cat bc-s">SECURITY</div></div>
+    <div class="blog-card"><div class="blog-dt">COMING<br>SOON</div><div class="blog-t">Designing Realistic Vulnerable VMs for OffSec Proving Grounds</div><div class="blog-cat bc-c">OFFSEC</div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <div class="sec-label reveal">// 07 · CONTACT</div>
+  <h2 class="sec-title reveal">Get In Touch</h2>
+  <div class="contact-grid reveal">
+    <div>
+      <p class="contact-intro">Looking for SOC analyst, network security, or junior penetration testing internships and positions — particularly with European companies. Open to remote, freelance, and consulting arrangements.</p>
+      <div class="contact-items">
+        <a href="mailto:mohamed.mensi24@gmail.com" class="ci"><span class="ci-icon">✉</span> mohamed.mensi24@gmail.com</a>
+        <a href="tel:+21651306136" class="ci"><span class="ci-icon">📞</span> +216 51 306 136</a>
+        <a href="https://linkedin.com/in/mohamed-mensi/" target="_blank" class="ci"><span class="ci-icon">in</span> linkedin.com/in/mohamed-mensi</a>
+        <a href="https://github.com/mohamed-mensi" target="_blank" class="ci"><span class="ci-icon">&lt;/&gt;</span> github.com/mohamed-mensi</a>
+        <a href="#" class="ci"><span class="ci-icon">↓</span> Download CV</a>
+      </div>
+    </div>
+    <div class="cform">
+      <div class="cform-head">// SEND A MESSAGE</div>
+      <div class="fg"><label class="fl">NAME</label><input class="fi" id="fn" type="text" placeholder="Your name"/></div>
+      <div class="fg"><label class="fl">EMAIL</label><input class="fi" id="fe" type="email" placeholder="your@email.com"/></div>
+      <div class="fg"><label class="fl">MESSAGE</label><textarea class="fi" id="fm" placeholder="Tell me about the opportunity..."></textarea></div>
+      <button class="btn btn-a" id="sbtn" style="width:100%">SEND_MESSAGE.exe</button>
+      <div class="fstatus" id="fs"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft"><span style="color:var(--accent)">Mohamed Mensi</span> · Network & Cybersecurity Engineer · Tunis, Tunisia</div>
+  <div class="ft">// <a href="mailto:mohamed.mensi24@gmail.com">mohamed.mensi24@gmail.com</a></div>
+</footer>
+
+<script>
+const projects = [
+  {tags:[['NETWORKING','ptag-n'],['LAB','ptag-c']],name:'VPN-MPLS Enterprise Backbone',org:'ISGT · GNS3 · 2025–2026',desc:'Full VPN-MPLS backbone across 4 Cisco c7200 PE/P routers with OSPF, iBGP, VRF-Lite (RD/RT 100:3), HSRP, EtherChannel, and per-VLAN STP.',stack:['GNS3 2.2.56','Cisco c7200','MPLS','OSPF','iBGP','VRF-Lite','IOU-L2','HSRP','LACP'],bullets:['Engineered full VPN-MPLS backbone: OSPF as IGP, iBGP for VPN prefix exchange, VRF-Lite with RD/RT 100:3 for L3VPN tenant isolation — replicating enterprise ISP segmentation','Configured distribution-layer redundancy: HSRP active/standby failover, EtherChannel (LACP) aggregation, per-VLAN STP root bridge election for VLANs 10, 15, 20, 300','Validated inter-VLAN routing, DHCP relay, and OSPF redistribution from access layer to MPLS core; confirmed CE-to-CE reachability across L3VPN tunnel','Diagnosed and resolved 7 infrastructure issues: IOU license validation failure, GNS3 VM VT-x crash under Hyper-V, LACP port suspension from STP misconfiguration, unicast frame drops at Dynamips/GNS3-VM boundary'],gh:'https://github.com/mohamed159753/vpn-mpls-enterprise-network'},
+  {tags:[['SECURITY','ptag-s'],['OFFSEC','ptag-t']],name:'"Vitals" — OffSec UGC Lab Machine',org:'OffSec Proving Grounds Candidate · 2026',desc:'Realistic vulnerable healthcare VM simulating a misconfigured hospital monitoring environment with multi-stage attack chain (CVE-2025-1094).',stack:['Ubuntu Server','Flask','PostgreSQL','JWT','systemd','CVE-2025-1094'],bullets:['Designed multi-stage attack chain: CVE-2025-1094 UTF-8 encoding bypass against Flask/PostgreSQL REST API to extract JWT secrets and escalate privileges','Implemented privilege escalation via insecure PostgreSQL archive_command execution and misconfigured systemd service permissions leading to root compromise','Engineered realistic enumeration paths: Swagger API discovery, JWT abuse scenarios, database-driven lateral movement, attack-surface hints','Developed on Ubuntu Server with Flask, PostgreSQL, Linux service hardening misconfigurations, and REST API authentication logic'],gh:'https://github.com/mohamed159753/vitals-offsec-lab'},
+  {tags:[['CLOUD','ptag-t'],['FULL-STACK','ptag-c']],name:'Cloud Resource Reservation & Billing',org:'CCK · Huawei Partner Project · Feb–Jun 2025',desc:'Multi-tenant cloud resource management platform for academic institutions with ECS provisioning, RBAC, and hybrid billing.',stack:['OpenStack','Huawei ManageOne','Spring Boot','Flask','REST API','RBAC','Agile/Scrum'],bullets:['Designed multi-tenant platform enabling secure ECS provisioning and billing across 3 isolated university tenants using OpenStack REST APIs','Implemented RBAC and tenant isolation in Spring Boot backend, enforcing least-privilege access and preventing cross-tenant resource exposure','Developed Flask-based API orchestration layer as secure abstraction over Huawei ManageOne, improving security boundaries','Built hybrid billing system (fixed + pay-as-you-go), automated invoice generation, and scheduling logic with availability validation'],gh:'https://github.com/mohamed159753/cloud-reservation-billing'},
+  {tags:[['ML','ptag-t'],['SECURITY','ptag-s']],name:'AI-Driven SOC Analyst Assistant',org:'Personal Project · 2025',desc:'ML-assisted SOC alert prioritization platform with attack classification and incident severity prediction for high-volume security operations.',stack:['FastAPI','Spring Boot','React','Random Forest','CIC-IDS2017','Python'],bullets:['Engineered dual-model classification pipeline using Random Forest trained on CIC-IDS2017: 11 attack categories + 4 alert priority levels','Built modular architecture: FastAPI inference services, Spring Boot orchestration, React analyst dashboards with Swagger-documented REST APIs','Implemented feature engineering across 18 network flow features, handling severe dataset imbalance via weighted classification strategies','Analyzed operational tradeoffs: inference latency, false positive/negative rates, batch vs real-time processing, and SOC scalability'],gh:'https://github.com/mohamed159753/soc-ml-service'},
+  {tags:[['CTF','ptag-c'],['FORENSICS','ptag-s']],name:'Securinets ISGT CTF Forensics Author',org:'Securinets · ISGT Tunis',desc:'Multi-challenge CTF in a Gotham City universe covering Linux forensics, EXIF steganography, encoding chains, and Windows spool analysis.',stack:['Linux forensics','EXIF steganography','base64','Windows','Wireshark'],bullets:['Linux log forensics: analyzed auth logs for attacker footprints and lateral movement indicators','EXIF metadata steganography: extracted hidden data from image files using metadata analysis','Encoding chain decoding: multi-layer base64/encoding challenge','Windows print spool forensic analysis to identify malicious activity patterns'],gh:'https://github.com/mohamed-mensi'},
+];
+
+const pg = document.getElementById('pg');
+projects.forEach((p,i) => {
+  const c = document.createElement('div');
+  c.className = 'proj-card';
+  c.innerHTML = `<div class="proj-tags">${p.tags.map(([t,cl])=>`<span class="ptag ${cl}">${t}</span>`).join('')}</div><div class="proj-name">${p.name}</div><div class="proj-desc">${p.desc}</div><div class="proj-stack">${p.stack.map(s=>`<span class="sp">${s}</span>`).join('')}</div><span class="proj-link">↗ Full Details</span>`;
+  c.onclick = () => openM(i);
+  pg.appendChild(c);
+});
+
+function openM(i){
+  const p=projects[i];
+  const mt=document.getElementById('mtag');
+  mt.className='mb-tag '+p.tags[0][1]; mt.textContent=p.tags[0][0];
+  document.getElementById('mtitle').textContent=p.name;
+  document.getElementById('morg').textContent=p.org;
+  document.getElementById('mbody').textContent=p.desc;
+  document.getElementById('mbullets').innerHTML=p.bullets.map(b=>`<div class="mb-bullet">${b}</div>`).join('');
+  document.getElementById('mstack').innerHTML=p.stack.map(s=>`<span class="sp">${s}</span>`).join('');
+  const gh=document.getElementById('mgh');
+  gh.href=p.gh; gh.style.display=p.gh?'inline-flex':'none';
+  document.getElementById('mo').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+document.getElementById('mclose').onclick=closeM;
+document.getElementById('mo').onclick=e=>{if(e.target.id==='mo')closeM();};
+function closeM(){document.getElementById('mo').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+
+let dark=true;
+document.getElementById('tbtn').onclick=()=>{
+  dark=!dark;
+  document.body.classList.toggle('light',!dark);
+  document.getElementById('tbtn').textContent=dark?'☀ LIGHT':'◑ DARK';
+};
+
+const roles=['Network Security Engineer','Junior Penetration Tester','Cloud Infrastructure Engineer','SOC Analyst · CTF Player'];
+let ri=0,ci=0,typing=true;
+const tel=document.getElementById('ht');
+function type(){
+  const r=roles[ri];
+  if(typing){ci++;tel.innerHTML=r.slice(0,ci)+'<span class="cur"></span>';if(ci>=r.length){typing=false;setTimeout(type,2400);return;}setTimeout(type,60);}
+  else{ci--;tel.innerHTML=r.slice(0,ci)+'<span class="cur"></span>';if(ci<=0){typing=true;ri=(ri+1)%roles.length;setTimeout(type,400);return;}setTimeout(type,30);}
+}
+setTimeout(type,1400);
+
+const obs=new IntersectionObserver(ents=>ents.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+
+const so=new IntersectionObserver(ents=>ents.forEach(e=>{
+  if(e.isIntersecting){e.target.querySelectorAll('.bar-inner').forEach(b=>b.style.width=b.dataset.w+'%');so.unobserve(e.target);}
+}),{threshold:.3});
+document.querySelectorAll('.skill-group').forEach(g=>so.observe(g));
+
+document.getElementById('sbtn').onclick=async()=>{
+  const n=document.getElementById('fn').value.trim(),e=document.getElementById('fe').value.trim(),m=document.getElementById('fm').value.trim();
+  const s=document.getElementById('fs');
+  if(!n||!e||!m){s.className='fstatus err';s.textContent='// ERROR: all fields required';return;}
+  s.className='fstatus ing';s.textContent='// TRANSMITTING...';
+  document.getElementById('sbtn').disabled=true;
+  try{
+    const r=await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:n,email:e,message:m})});
+    if(r.ok){s.className='fstatus ok';s.textContent='// TRANSMISSION SUCCESSFUL';document.getElementById('fn').value='';document.getElementById('fe').value='';document.getElementById('fm').value='';}
+    else throw 0;
+  }catch{s.className='fstatus err';s.textContent='// Replace YOUR_FORMSPREE_ID to activate';}
+  document.getElementById('sbtn').disabled=false;
+};
+</script>
+</body>
+</html>
