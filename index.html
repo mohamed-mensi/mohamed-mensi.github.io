@@ -57,9 +57,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:400;height:56px;display:flex;ali
 .social-link:hover{border-color:var(--accent);color:var(--accent)}
 .hero-img-wrap{display:flex;justify-content:center;align-items:center;opacity:0;animation:up .7s .3s forwards}
 @media(max-width:700px){.hero-img-wrap{display:none}}
-.hero-img-frame{position:relative;width:320px;height:380px}
-.hero-img-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--accent2),var(--accent3));clip-path:polygon(12% 0%,100% 0%,100% 88%,88% 100%,0% 100%,0% 12%);opacity:.2}
-.hero-img-inner{position:absolute;inset:3px;background:var(--bg2);clip-path:polygon(12% 0%,100% 0%,100% 88%,88% 100%,0% 100%,0% 12%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-img-frame {
+  position: relative;
+  width: 320px;
+  height: 380px;
+}
+.hero-img-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  clip-path: polygon(12% 0%, 100% 0%, 100% 88%, 88% 100%, 0% 100%, 0% 12%);
+}
+.hero-img-inner {
+  position: absolute;
+  inset: 3px;
+  clip-path: polygon(12% 0%, 100% 0%, 100% 88%, 88% 100%, 0% 100%, 0% 12%);
+  overflow: hidden;
+}
+.hero-img-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
 .hero-avatar-big{width:100%;height:100%;background:linear-gradient(160deg,var(--bg3) 0%,var(--bg4) 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem}
 .av-ring {
   width: 160px;
@@ -312,7 +333,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="hero-img-bg"></div>
       <div class="hero-img-inner">
         <div class="hero-avatar-big">
-          <div class="av-ring-inner">
+          <div class="hero-img-inner">
             <img src="https://media.licdn.com/dms/image/v2/D4D03AQHvJdwP2ERS8Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731273651710?e=1779926400&v=beta&t=VUP48X4KOSH1UvwxtqWgJ97DHo1TEbZKG8JBNMVRmQk" alt="Mohamed Mensi"/>
           </div>
           <div class="av-name">Mohamed Mensi</div>
