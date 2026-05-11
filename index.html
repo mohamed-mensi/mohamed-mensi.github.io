@@ -10,6 +10,12 @@
 
   gtag('config', 'G-JZHMY6WXSV');
 </script>
+
+<script>
+function trackEvent(name, params = {}) {
+  gtag('event', name, params);
+}
+</script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Mohamed Mensi — Network Security Engineer</title>
@@ -483,7 +489,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 </div>
 
 <!-- PROJECTS -->
-<div class="section-wrap" id="projects">
+<div class="section-wrap" id="projects" onmouseenter="trackEvent('view_projects_section')" >
   <div class="sec-label reveal">// 03 · PROJECTS</div>
   <h2 class="sec-title reveal">Selected Work</h2>
   <p class="sec-sub reveal">Click any card for the full technical breakdown. Replace placeholder images with screenshots from your actual projects.</p>
@@ -593,9 +599,9 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="contact-items">
         <a href="mailto:mohamed.mensi24@gmail.com" class="ci"><span class="ci-icon">✉</span> mohamed.mensi24@gmail.com</a>
         <a href="tel:+21651306136" class="ci"><span class="ci-icon">📞</span> +216 51 306 136</a>
-        <a href="https://linkedin.com/in/mohamed-mensi/" target="_blank" class="ci"><span class="ci-icon">in</span> linkedin.com/in/mohamed-mensi</a>
-        <a href="https://github.com/mohamed-mensi" target="_blank" class="ci"><span class="ci-icon">&lt;/&gt;</span> github.com/mohamed-mensi</a>
-        <a href="CV_Mohamed_Mensi.pdf" class="ci"><span class="ci-icon">↓</span> Download CV</a>
+        <a href="https://linkedin.com/in/mohamed-mensi/" target="_blank" onclick="trackEvent('click_linkedin')" class="ci"><span class="ci-icon">in</span> linkedin.com/in/mohamed-mensi</a>
+        <a href="https://github.com/mohamed-mensi" target="_blank" onclick="trackEvent('click_github')" class="ci"><span class="ci-icon">&lt;/&gt;</span> github.com/mohamed-mensi</a>
+        <a href="CV_Mohamed_Mensi.pdf" class="ci" onclick="trackEvent('download_cv', {type: 'cv'})"><span class="ci-icon">↓</span> Download CV</a>
       </div>
     </div>
     <div class="cform">
